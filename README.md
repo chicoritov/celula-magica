@@ -7,24 +7,55 @@ App educacional inclusivo sobre células para crianças, com visualização 3D i
 ### Telas
 - **Home**: Tela inicial com navegação intuitiva
 - **Explorar**: Visualização 2D e **3D interativa** das células com hotspots
-- **Quiz**: 8 perguntas embaralhadas com feedback imediato e gamificação
+- **Comparar**: Células lado a lado com câmeras sincronizadas
+- **Quiz**: 34 perguntas com 3 níveis de dificuldade (fácil/médio/difícil)
 - **Conquistas**: Sistema de medalhas desbloqueáveis
 
-### Visualização 3D
+### Comparador Lado a Lado (NOVO!)
+- 🔄 **Câmeras sincronizadas**: Gire uma célula e a outra acompanha automaticamente
+- 🔬 **Raio-X animado**: Corte suave com easing (800ms de transição)
+- 📊 **Tabela comparativa**: Diferenças entre célula animal e vegetal
+- 👆 **Seleção compartilhada**: Clique em uma organela e veja em ambas as células
+
+### Mini-Animações Educativas por Organela
+Cada organela tem uma animação única que explica sua função:
+- ⚡ **Mitocôndria**: Libera partículas de ATP (energia) pulsando
+- 🧠 **Núcleo**: DNA dupla hélice desenrolando com glow
+- 🌿 **Cloroplasto**: Fótons (luz) entrando + bolhas de O₂ saindo
+- 🔧 **Ribossomos**: Aminoácidos coloridos se montando em proteína
+- 🗑️ **Lisossomo**: Partículas sendo digeridas em espiral
+- 📦 **Golgi**: Vesículas sendo empacotadas e enviadas
+- 🛤️ **Retículo Endoplasmático**: Proteínas viajando pelos túbulos
+- 🛡️ **Membrana**: Transporte seletivo entrando/saindo
+
+### Visualização 3D Premium (Estilo National Geographic)
 - 🧊 **Modelos 3D completos** de células animal e vegetal
-- 🖱️ **Rotação livre** com arrastar do mouse
-- 🔍 **Zoom** com scroll do mouse
-- 👆 **Clique nas organelas** para ver detalhes
-- 🎨 **Materiais realistas** com transparência e reflexos
-- 🔄 **Auto-rotação** suave
-- 💡 **Iluminação dinâmica** com sombras
+- 🖱️ **Rotação livre** com arrastar do mouse + damping suave
+- 🔍 **Zoom** com scroll do mouse (4x a 12x)
+- 👆 **Clique nas organelas** para ver detalhes e animações
+- 🎨 **Materiais PBR fotorrealistas** com subsurface scattering
+- 🔄 **Auto-rotação** suave quando idle
+- 💡 **Iluminação cinematográfica** de 3 pontos (key, fill, rim)
+- 🌟 **Bloom effect** em organelas luminosas (núcleo, mitocôndria)
+- 🌫️ **Vignette** para foco visual central
+- 🌍 **HDRI Environment** para reflexos realistas
+- 🏷️ **Labels elegantes** com linhas pointer estilo textbook
+- 🪟 **Frosted glass** nos labels (backdrop-filter blur)
+
+### Áudio
+- 🎵 **Música ambiente procedural**: Gerada em tempo real com Web Audio API
+- 🎼 **Escala pentatônica**: Melodia relaxante que nunca soa dissonante
+- 🔊 **Controle de volume**: Slider para ajustar o volume
+- ⏸️ **Pausa/Play**: Botão flutuante no canto inferior direito
+- 💾 **Persistência**: Lembra a preferência do usuário
+- 🎯 **Modo foco**: Pausa automaticamente para evitar sobrecarga sensorial
 
 ### Acessibilidade (WCAG 2.2)
 - 🔊 **Voz**: Leitura em voz alta com SpeechSynthesis pt-BR
 - 🅰️ **Texto grande**: Aumento progressivo do tamanho do texto
 - ◐ **Alto contraste**: Modo preto + dourado para baixa visão
 - 🔤 **Fonte dislexia**: OpenDyslexic para disléxicos
-- 🎯 **Modo foco**: Remove animações (anti-sobrecarga sensorial para TEA)
+- 🎯 **Modo foco**: Remove animações e música (anti-sobrecarga sensorial para TEA)
 
 ### Design
 - Glassmorphism moderno com backdrop-filter blur
@@ -69,19 +100,35 @@ src/
 - **3D module**: ~244KB gzip (carregado sob demanda)
 - **CSS otimizado**: ~6KB gzip
 
-## 🧊 Componentes 3D
+## 🧊 Componentes 3D Melhorados
 
-O modelo 3D inclui organelas realistas:
-- **Membrana celular**: Esfera transparente com material glass-like
-- **Núcleo**: Esfera com nucléolo interno
-- **Mitocôndrias**: Cápsulas com cristas internas
-- **Retículo endoplasmático**: Tubos curvos
-- **Complexo de Golgi**: Discos empilhados
-- **Ribossomos**: Esferas pequenas distribuídas
-- **Lisossomos**: Esferas translúcidas
-- **Cloroplastos** (vegetal): Cápsulas verdes com tilacoides
-- **Vacúolo** (vegetal): Esfera grande transparente
-- **Parede celular** (vegetal): Caixa wireframe externa
+Modelo 3D com organelas ultra-realistas e efeitos visuais:
+
+### Organelas Detalhadas
+- **Membrana celular**: Material glass-like com transmission, clearcoat e respiração suave
+- **Núcleo**: Poros nucleares, cromatina em torus knot, nucléolo com clearcoat
+- **Mitocôndrias**: Cristas internas detalhadas, membrana dupla, respiração orgânica
+- **Retículo endoplasmático**: Tubos curvos com ribossomos aderidos (RE rugoso)
+- **Complexo de Golgi**: Discos empilhados com vesículas brotando
+- **Ribossomos**: InstancedMesh para performance, distribuídos pelo citoplasma
+- **Lisossomos**: Enzimas internas em icosaedro, pulsação individual
+- **Cloroplastos** (vegetal): Granum com tilacoides empilhados, estroma
+- **Vacúolo** (vegetal): IOR 1.33 (água real), wobble orgânico
+- **Parede celular** (vegetal): Wireframe com rotação suave
+
+### Efeitos Visuais
+- ✨ **Glow effect**: Brilho ao redor das organelas ativas
+- 💫 **Partículas do citoplasma**: 150 partículas com movimento browniano
+- 🌈 **Iluminação multi-color**: 5 luzes coloridas (âmbar, violeta, azul, rosa)
+- 🌍 **Environment map**: Reflexos realistas com preset "city"
+- 🎭 **Materiais físicos**: Transmission, clearcoat, IOR, roughness
+- 🫧 **Animações orgânicas**: Respiração, pulsação, rotação individual
+
+### Interatividade
+- 🖱️ **Hover**: Cursor muda, organela destaca
+- 👆 **Click**: Seleciona e mostra informações
+- 🔄 **Auto-rotação**: Suave com damping
+- 🔍 **Zoom**: Scroll do mouse (4x a 12x de distância)
 
 ## ♿ Acessibilidade
 
